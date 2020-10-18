@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { useMyHook } from 'usepagination'
+import { usePagination } from 'usepagination'
 
 const App = () => {
-  const example = useMyHook()
+  const example = usePagination()
   return (
     <div>
       {example}

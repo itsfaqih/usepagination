@@ -1,6 +1,6 @@
 # usepagination
 
-> Data pagination hooks for react
+> Simple pagination hooks for react
 
 [![NPM](https://img.shields.io/npm/v/usepagination.svg)](https://www.npmjs.com/package/usepagination) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
