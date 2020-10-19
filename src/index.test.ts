@@ -1,15 +1,17 @@
 import usePagination from './';
 import { act, renderHook } from '@testing-library/react-hooks';
-import { posts } from './mocks/posts';
+
+const { posts } = require('posts');
+
+jest.mock('posts');
 
 const perPage = 6;
 const paginatableLength = Math.floor(Math.random() * posts.length + perPage + 1);
-const lowShownPageNumber = Math.floor(Math.random() * (Math.ceil(paginatableLength / perPage) - 1) + 1);
+const lowShownPageNumber = Math.floor(
+  Math.random() * (Math.ceil(paginatableLength / perPage) - 1) + 1
+);
 
-const initiateData = (
-  length = paginatableLength,
-  shownPageNumber = lowShownPageNumber
-) => {
+const initiateData = (length = paginatableLength, shownPageNumber = lowShownPageNumber) => {
   const usedPost = posts.slice(0, length);
 
   const { result } = renderHook(() => usePagination(usedPost, perPage, shownPageNumber));
@@ -91,13 +93,13 @@ describe('usePagination', () => {
   it('gives full page numbers when shownPageNumber is higher', () => {
     const bigShownPageNumber = Math.floor(posts.length / perPage) + 1;
     const result = initiateData(paginatableLength, bigShownPageNumber);
-    
+
     expect(result.current.page.numbers.includes('...')).toBe(false);
   });
 
   it('gives ellipsis page numbers when shownPageNumber is lower', () => {
     const result = initiateData();
-    
+
     expect(result.current.page.numbers.includes('...')).toBe(true);
   });
 });

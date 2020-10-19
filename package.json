@@ -1,6 +1,6 @@
 {
-  "name": "usepagination",
-  "version": "1.0.0",
+  "name": "@itsfaqih/usepagination",
+  "version": "0.3.0",
   "description": "Simple data pagination hooks for react",
   "author": "itsfaqih",
   "license": "MIT",

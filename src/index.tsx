@@ -50,7 +50,9 @@ export default function usePagination<T>(
     } else {
       pageNumbers.push(...Array.from({ length: shownPageNumber }, (_, i) => i + 1));
     }
-    pageNumbers.push('...');
+    if (maxPageNumber - currentPage > Math.floor(shownPageNumber / 2)) {
+      pageNumbers.push('...');
+    }
   }
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function usePagination<T>(
   };
 
   const goToPage = (pageNumber: number) => {
-    if (pageNumber !== currentPage) {
+    if (pageNumber !== currentPage && typeof pageNumber === 'number') {
       setCurrentPage(pageNumber);
     }
   };

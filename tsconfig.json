@@ -36,6 +36,7 @@
     "build",
     "dist",
     "example",
-    "rollup.config.js"
+    "rollup.config.js",
+    "src/__mocks__"
   ]
 }
