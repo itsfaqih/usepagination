@@ -1,6 +1,6 @@
-# usepagination
+# usePagination
 
-> Simple pagination hooks for react
+Simple client side pagination hooks for react.
 
 [![NPM](https://img.shields.io/npm/v/@itsfaqih/usepagination.svg)](https://www.npmjs.com/package/@itsfaqih/usepagination)
 
@@ -68,6 +68,39 @@ const Home = () => {
   );
 };
 ```
+
+## API
+
+```tsx
+const { page, action } = usePagination(initialData, perPage, shownPageNumber);
+```
+
+### `parameters`
+
+| Parameter       | Type   | Description                                        |
+| --------------- | ------ | -------------------------------------------------- |
+| initialData     | Array  | The array of the data to be paginated              |
+| perPage         | number | Number of data to be shown per page                |
+| shownPageNumber | number | Amount of number to be shown in pagination buttons |
+
+### `page`
+
+| Property | Type           | Description                                                                     |
+| -------- | -------------- | ------------------------------------------------------------------------------- |
+| data     | Array          | Data of current active page                                                     |
+| numbers  | Array          | Generated page numbers for pagination buttons                                   |
+| current  | number \| null | Current active page number. It will be null on empty initialData                |
+| next     | number \| null | Next page number. It will be null on empty initialData or no more next page     |
+| previous | number \| null | Previous page number. It will be null on empty initialData or active first page |
+| last     | number         | Last page number. It will be 0 on empty initialData                             |
+
+### `action`
+
+| Property | Type     | Argument | Description                 |
+| -------- | -------- | :------: | --------------------------- |
+| next     | Function |    -     | Change to the next page     |
+| previous | Function |    -     | Change to the previous page |
+| goTo     | Function |  number  | Change to specified page    |
 
 ## License
 
