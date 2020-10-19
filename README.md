@@ -3,7 +3,6 @@
 > Simple pagination hooks for react
 
 [![NPM](https://img.shields.io/npm/v/@itsfaqih/usepagination.svg)](https://www.npmjs.com/package/@itsfaqih/usepagination)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
@@ -14,13 +13,21 @@ npm install --save @itsfaqih/usepagination
 ## Usage
 
 ```tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Post from 'component/post';
 import Pagination from 'component/pagination';
 import usePagination from '@itsfaqih/usepagination';
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  const posts = [
+    {
+      id: 1,
+      title: 'Nice hooks',
+      body: 'You can also use data from an API. As long as it returns an array',
+    },
+    ...
+  ];
+
   const { page, action } = usePagination(posts);
 
   return (
@@ -31,9 +38,30 @@ const Home = () => {
       </div>
       <div>
         <Pagination>
-          {page.numbers.map(number => (
-            <Pagination.Number number={number} onClick={() => action.goTo(number)}/>
+          <Pagination.First
+            onClick={() => action.goTo(1)}
+            disabled={page.current === 1}
+          />
+          <Pagination.Previous
+            onClick={action.previous}
+            disabled={page.previous === null}
+          />
+          {page.numbers.map((number, index) => (
+            <Pagination.Number
+              key={index}
+              number={number}
+              onClick={() => action.goTo(number)}
+              disabled={page.current === number}
+            />
           ))}
+          <Pagination.Next
+            onClick={action.next}
+            disabled={page.next === null}
+          />
+          <Pagination.Last
+            onClick={() => action.goTo(page.last)}
+            disabled={page.current === page.last}
+          />
         </Pagination>
       </div>
     </div>
